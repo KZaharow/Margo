@@ -17,6 +17,11 @@ public class DataController {
     private final DataService dataService;
     @GetMapping
     public String getData(){
-        return dataService.readPerson(LocalDateTime.now()).toString();
+
+        //return dataService.createPerson().toString();
+        //return dataService.readPerson(LocalDateTime.now()).toString();
+        //return dataService.readAllPerson().toString();
+        return dataService.readAllPersonInDateRange(LocalDateTime.now().minusDays(1000),LocalDateTime.now())
+                .toString();
     }
 }

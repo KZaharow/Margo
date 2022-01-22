@@ -1,18 +1,18 @@
 package com.zahar.margarita.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.zahar.margarita.converter.DataConverter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "person")
+@Table(name = "person1")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Person {
+@ToString
+public class Person1 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,5 +20,6 @@ public class Person {
 
     private String name;
 
+    @Convert(converter = DataConverter.class)
     private LocalDateTime birthDay;
 }
