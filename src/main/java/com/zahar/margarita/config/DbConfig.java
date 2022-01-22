@@ -22,7 +22,7 @@ public class DbConfig {
     DataSource dataSource(){
 
         HikariConfig hikariConfig = new HikariConfig();
-        hikariConfig.setJdbcUrl("jdbc:postgresql://localhost:5432/postgres][[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[");
+        hikariConfig.setJdbcUrl("jdbc:postgresql://localhost:5432/postgres");
         hikariConfig.setDriverClassName("org.postgresql.Driver");
         hikariConfig.setUsername("postgres");
         hikariConfig.setPassword("admin");
@@ -42,6 +42,7 @@ public class DbConfig {
     public SessionFactory sessionFactory(DataSource dataSource) throws Exception {
 
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
+        factoryBean.setPackagesToScan("com.zahar.margarita");
         factoryBean.setDataSource(dataSource);
         factoryBean.afterPropertiesSet();
         return factoryBean.getObject();
