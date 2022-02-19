@@ -1,10 +1,9 @@
 package com.zahar.margarita.config;
 
-import com.zahar.margarita.permissions.Permissions;
 import com.zahar.margarita.roles.Roles;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -16,6 +15,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -23,8 +23,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/**").hasAnyAuthority(Permissions.DEVELOPERS_READ.getPermission())
-                .antMatchers(HttpMethod.POST, "/api/**").hasAnyAuthority(Permissions.DEVELOPERS_WRITE.getPermission())
                 .anyRequest()
                 .authenticated()
                 .and()
