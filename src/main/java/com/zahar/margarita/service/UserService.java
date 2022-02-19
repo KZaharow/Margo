@@ -1,9 +1,12 @@
 package com.zahar.margarita.service;
 
-import com.zahar.margarita.entity.User;
+import com.zahar.margarita.entity.Person;
+
+import java.util.List;
 
 public interface UserService {
 
-    User getUserById(Long id) throws Exception;
-    User saveUser(User user) throws Exception;
+    Person getUserById(Long id) throws Exception;
+    Person saveUser(Person person) throws Exception;
+    List<Person> getAllUsers();
 }
