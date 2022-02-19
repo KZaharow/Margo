@@ -9,16 +9,11 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication(exclude = {
-		DataSourceAutoConfiguration.class,
-		DataSourceTransactionManagerAutoConfiguration.class,
-		HibernateJpaAutoConfiguration.class
-})
+@SpringBootApplication
 @EnableJpaRepositories
 public class MargaritaApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MargaritaApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(MargaritaApplication.class, args);
+    }
 }

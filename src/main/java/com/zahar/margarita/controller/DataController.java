@@ -1,33 +1,24 @@
 package com.zahar.margarita.controller;
 
-import com.zahar.margarita.service.DataService;
+import com.zahar.margarita.entity.User;
+import com.zahar.margarita.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.time.LocalDateTime;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class DataController {
 
-    private final DataService dataService;
+    private final UserService userService;
 
-    @GetMapping("/{start}/{monthDeep}")
-    public String getData(
-            @PathVariable("start") @DateTimeFormat(pattern = "dd.MM.yy kk:mm:ss,SSSSSS") LocalDateTime start,
-            @PathVariable("monthDeep") long deepMonth
-    ) {
-        return dataService.readAllPersonInDateRange(start, start.plusMonths(deepMonth))
-                .toString();
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable("id") Long id) throws Exception {
+        return userService.getUserById(id);
     }
 
-    @GetMapping("/all")
-    public String getAllData() {
-        return dataService.readAllPerson().toString();
+    @PostMapping
+    public User saveUser(@RequestBody() User user) throws Exception {
+        return userService.saveUser(user);
     }
 }
