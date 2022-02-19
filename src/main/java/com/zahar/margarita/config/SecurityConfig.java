@@ -1,5 +1,6 @@
 package com.zahar.margarita.config;
 
+import com.zahar.margarita.permissions.Permissions;
 import com.zahar.margarita.roles.Roles;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,8 +23,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/**").hasAnyRole(Roles.ADMIN.name(), Roles.USER.name())
-                .antMatchers(HttpMethod.POST, "/api/**").hasAnyRole(Roles.ADMIN.name())
+                .antMatchers(HttpMethod.GET, "/api/**").hasAnyAuthority(Permissions.DEVELOPERS_READ.getPermission())
+                .antMatchers(HttpMethod.POST, "/api/**").hasAnyAuthority(Permissions.DEVELOPERS_WRITE.getPermission())
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -37,12 +38,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 User.builder()
                         .username("admin")
                         .password(passwordEncoder().encode("admin"))
-                        .roles(Roles.ADMIN.name())
+                        .authorities(Roles.ADMIN.getGrantedAuthority())
                         .build(),
                 User.builder()
                         .username("user")
                         .password(passwordEncoder().encode("user"))
-                        .roles(Roles.USER.name())
+                        .authorities(Roles.USER.getGrantedAuthority())
                         .build()
         );
     }

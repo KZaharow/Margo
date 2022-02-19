@@ -24,10 +24,10 @@ public enum Roles {
         return permissions;
     }
 
-    public Set<GrantedAuthority> getGrantedAuthorityI(){
+    public Set<GrantedAuthority> getGrantedAuthority() {
         return getPermissions()
                 .stream()
-                .map(p->new SimpleGrantedAuthority(p.getPermission()))
+                .map(p -> new SimpleGrantedAuthority(p.getPermission()))
                 .collect(Collectors.toSet());
     }
 }
