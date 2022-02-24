@@ -3,9 +3,7 @@ package com.zahar.margarita.controller;
 import com.zahar.margarita.entity.Person;
 import com.zahar.margarita.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,17 +17,17 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/login")
-    public String getLoginPage(){
+    public String getLoginPage() {
         return "login_page";
     }
 
     @GetMapping("/success")
-    public String getSuccess(){
+    public String getSuccess() {
         return "success";
     }
 
     @GetMapping("/add")
-    public String getUserPage(){
+    public String getUserPage() {
         return "add_user";
     }
 

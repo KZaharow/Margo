@@ -14,12 +14,12 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public Person getUserById(Long id) throws Exception {
+    public Person getUserById(Long id) {
         return userRepository.findById(id).orElse(new Person(-1L, "No user"));
     }
 
     @Override
-    public Person saveUser(Person person) throws Exception {
+    public Person saveUser(Person person) {
         return userRepository.save(person);
     }
 

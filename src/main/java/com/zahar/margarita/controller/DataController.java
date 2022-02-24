@@ -4,7 +4,6 @@ import com.zahar.margarita.entity.Person;
 import com.zahar.margarita.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +23,7 @@ public class DataController {
 
     @GetMapping
     @PreAuthorize("hasAnyAuthority('developer: read')")
-    public List<Person> getAllUsers() throws Exception {
+    public List<Person> getAllUsers() {
         return userService.getAllUsers();
     }
 
