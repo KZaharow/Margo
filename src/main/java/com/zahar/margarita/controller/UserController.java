@@ -3,7 +3,9 @@ package com.zahar.margarita.controller;
 import com.zahar.margarita.entity.Person;
 import com.zahar.margarita.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,8 +35,7 @@ public class UserController {
 
     @PostMapping("/add")
     public String addUser(@RequestParam String name) throws Exception {
-        userService.saveUser(new Person(null, name));
+        //userService.saveUser(new Person(null, name));
         return "add_user";
     }
-
 }

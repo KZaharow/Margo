@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Person getUserById(Long id) {
-        return userRepository.findById(id).orElse(new Person(-1L, "No user"));
+        return userRepository.findById(id).orElseThrow(()->new IllegalArgumentException("User not exist"));
     }
 
     @Override
