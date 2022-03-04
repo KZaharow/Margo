@@ -1,7 +1,7 @@
 package com.zahar.margarita.service;
 
 import com.zahar.margarita.entity.Person;
-import com.zahar.margarita.repository.UserRepository;
+import com.zahar.margarita.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,20 +11,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
+    private final PersonRepository personRepository;
 
     @Override
     public Person getUserById(Long id) {
-        return userRepository.findById(id).orElseThrow(()->new IllegalArgumentException("User not exist"));
+        return personRepository.findById(id).orElseThrow(()->new IllegalArgumentException("User not exist"));
     }
 
     @Override
     public Person saveUser(Person person) {
-        return userRepository.save(person);
+        return personRepository.save(person);
     }
 
     @Override
     public List<Person> getAllUsers() {
-        return userRepository.findAll();
+        return personRepository.findAll();
     }
 }
