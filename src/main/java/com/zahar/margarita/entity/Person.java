@@ -35,6 +35,9 @@ public class Person {
     @Column(name = "patronymic")
     private String patronymic;
 
+    @Column(name = "birthday")
+    private LocalDate birthday;
+
     @Column(name = "passport")
     private String passport;
 
@@ -64,7 +67,6 @@ public class Person {
 
     @Column(name = "benefit_document")
     private String firedDocument;
-
 
     @Column(name = "role")
     @Enumerated(value = EnumType.STRING)
