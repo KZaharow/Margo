@@ -35,13 +35,19 @@ public class Person {
     @Column(name = "patronymic")
     private String patronymic;
 
+    @Column(name = "phone_1")
+    private String phone1;
+
+    @Column(name = "phone_2")
+    private String phone2;
+
     @Column(name = "birthday")
     private LocalDate birthday;
 
     @Column(name = "passport")
     private String passport;
 
-    @OneToMany(mappedBy = "garage")
+    @OneToMany(mappedBy = "owner")
     private Set<Garage> garages;
 
     @Column(name = "address_1")
@@ -66,7 +72,7 @@ public class Person {
     private boolean isBenefitPerson;
 
     @Column(name = "benefit_document")
-    private String firedDocument;
+    private String benefitDocument;
 
     @Column(name = "role")
     @Enumerated(value = EnumType.STRING)

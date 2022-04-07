@@ -17,7 +17,7 @@ public class Garage {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "garage_id")
+    @JoinColumn(name = "owner_id")
     private Person owner;
 
     @Column(name = "isPrivate")

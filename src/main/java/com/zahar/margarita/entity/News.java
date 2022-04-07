@@ -1,14 +1,11 @@
 package com.zahar.margarita.entity;
 
+import com.zahar.margarita.status.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.io.File;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
@@ -21,11 +18,16 @@ public class News {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "date")
     private LocalDate date;
 
+    @Column(name = "header")
     private String header;
 
+    @Column(name = "text")
     private String text;
 
-    private File images;
+    @Column(name = "status")
+    @Enumerated(value = EnumType.STRING)
+    private Status status;
 }

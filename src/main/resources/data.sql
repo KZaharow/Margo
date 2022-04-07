@@ -1,17 +1,42 @@
-insert into Person (id, email, password, firstName, lastName, patronymic, birthday, passport, garages, address1,
-                    address2, hiredDate, hiredDocument, firedDate, firedDocument, isBenefitPerson, firedDocument, roles,
-                    status)
-values (1,
+insert into person(address_1,
+                   address_2,
+                   benefit_document,
+                   birthday,
+                   username,
+                   fired_date,
+                   fired_document,
+                   name,
+                   hired_date,
+                   hired_document,
+                   is_benefit_person,
+                   surname,
+                   passport,
+                   password,
+                   patronymic,
+                   phone_1,
+                   phone_2,
+                   role,
+                   status)
+values ('г.минск, ул.карла-маркса, 3-45',
+        'г.минск, ул.карла-маркса, 3-45',
+        'пенсионное уд. 4 от 01-01-20',
+        '1984-07-26',
         'admin@mail.com',
-        '$2a$12$dGzfjGCPuVosuHNsTiKsP.6oMjtAH6o9aJY1X6yqAxjXEykh2UdQq',
-        'Иван',
-        'Иванов',
-        'Иванович',
-        1984-07-26,
-        ),
-       (2, 'user@mail.com', 'user', 'userov', '$2a$12$J8XgZwHnyQo/Td3y54R7Ouq/hmGgewxad2KMaRBJVt2qfsZHGGxO2', 'USER',
-        'ACTIVE');
+        '2020-07-01',
+        null,
+        null,
+        '2020-07-01',
+        'договор купли-продажи от 10.06.2020',
+        true,
+        'иванов',
+        'hb12345678 выдан центральным ровд г.минска 20-01-2020',
+        '$2a$10$CFyb65uvxREdFZq21INAcOtnLgJomL6rYsndRQUptcz3UX5M2b/AO',
+        'иванович',
+        '+375293912358',
+        '+375293912358',
+        'user',
+        'active');
 
-/*// @Id
-    (id, email, password, firstName, lastName, patronymic, birthday, passport, garages, address1, address2,
-  hiredDate, hiredDocument, firedDate, firedDocument, isBenefitPerson, firedDocument, roles, status)
+insert into garage(description, is_private, square, owner_id)
+values ('17', true, 18.7, 1);
+
