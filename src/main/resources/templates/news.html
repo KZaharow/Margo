@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование новостей</title>
+</head>
+<body>
+<select class="form-control" id="dropDownList">
+    <option value="2"></option>
+    <option th:each="n : ${news}" th:value="${n}" th:text="${n}"></option>
+</select>
+<p>Добавить новость в базу</p>
+<form action="/news" method="post">
+    <section>
+        <label for="header_id">Заголовок</label>
+        <input type="text" name="header" id="header_id">
+        <label for="text_id">Текст</label>
+        <input type="text" name="text" id="text_id">
+        <button type="submit">Добавить</button>
+    </section>
+</form>
+
+</body>
+</html>

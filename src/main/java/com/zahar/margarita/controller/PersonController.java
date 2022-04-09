@@ -40,7 +40,7 @@ public class PersonController {
 
     @PostMapping("/add")
     public String addUser(@RequestParam String name) throws Exception {
-        //userService.saveUser(new Person(null, name));
+        personService.savePerson(new Person());
         return "add_user";
     }
 }
