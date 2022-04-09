@@ -1,7 +1,7 @@
 package com.zahar.margarita.controller;
 
 import com.zahar.margarita.entity.Person;
-import com.zahar.margarita.service.UserService;
+import com.zahar.margarita.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -13,23 +13,23 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DataController {
 
-    private final UserService userService;
+    private final PersonService personService;
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('developer: read')")
     public Person getUserById(@PathVariable("id") Long id) throws Exception {
-        return userService.getUserById(id);
+        return personService.getPersonById(id);
     }
 
     @GetMapping
     @PreAuthorize("hasAnyAuthority('developer: read')")
     public List<Person> getAllUsers() {
-        return userService.getAllUsers();
+        return personService.getAllPersons();
     }
 
     @PostMapping(consumes = "application/json")
     @PreAuthorize("hasAnyAuthority('developer: write')")
     public Person saveUser(@RequestBody() Person person) throws Exception {
-        return userService.saveUser(person);
+        return personService.savePerson(person);
     }
 }

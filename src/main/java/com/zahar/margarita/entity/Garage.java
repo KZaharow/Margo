@@ -3,8 +3,13 @@ package com.zahar.margarita.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -13,7 +18,9 @@ import javax.persistence.*;
 public class Garage {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
+    @Min(1)
+    @Max(74)
     private Long id;
 
     @ManyToOne

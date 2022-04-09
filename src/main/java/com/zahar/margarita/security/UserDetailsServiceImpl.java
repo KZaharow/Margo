@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service(value = "userDetailsServiceImpl")
 @Slf4j
@@ -18,10 +20,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private final PersonRepository personRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.info("Request login user: {}", username);
-        Person person = personRepository.findByEmail(username)
-                .orElseThrow(() -> new IllegalArgumentException("person not exist"));
-        return SecurityUser.fromPerson(person);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        log.info("Request login user: {}", email);
+        try{
+            Optional<Person> byEmail = personRepository.findByEmail(email);
+            if(byEmail.isPresent()){
+                return SecurityUser.fromPerson(byEmail.get());
+            }
+        }catch (Exception e){
+            log.error(e.getMessage());
+        }
+        return null;
     }
 }

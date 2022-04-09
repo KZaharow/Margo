@@ -11,22 +11,22 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class UserServiceImpl implements UserService {
+public class PersonServiceImpl implements PersonService {
 
     private final PersonRepository personRepository;
 
     @Override
-    public Person getUserById(Long id) {
+    public Person getPersonById(Long id) {
         return personRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("User not exist"));
     }
 
     @Override
-    public Person saveUser(Person person) {
+    public Person savePerson(Person person) {
         return personRepository.save(person);
     }
 
     @Override
-    public List<Person> getAllUsers() {
+    public List<Person> getAllPersons() {
         return personRepository.findAll();
     }
 }

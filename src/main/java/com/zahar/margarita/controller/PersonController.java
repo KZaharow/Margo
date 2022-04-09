@@ -1,19 +1,27 @@
 package com.zahar.margarita.controller;
 
-import com.zahar.margarita.service.UserService;
+import com.zahar.margarita.entity.Person;
+import com.zahar.margarita.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/forms")
-public class UserController {
+public class PersonController {
 
     @Autowired
-    UserService userService;
+    PersonService personService;
+
+    @GetMapping("/")
+    public String getAllPersons(Model model) {
+        List<Person> persons = personService.getAllPersons();
+        model.addAttribute("persons", persons);
+        return "persons";
+    }
 
     @GetMapping("/login")
     public String getLoginPage() {

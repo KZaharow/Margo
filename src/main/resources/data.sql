@@ -1,8 +1,8 @@
-insert into person(address_1,
+insert into person(benefit_document,
+                   address_1,
                    address_2,
-                   benefit_document,
                    birthday,
-                   username,
+                   email,
                    fired_date,
                    fired_document,
                    name,
@@ -17,9 +17,9 @@ insert into person(address_1,
                    phone_2,
                    role,
                    status)
-values ('г.минск, ул.карла-маркса, 3-45',
+values ('пенсионное уд. 4 от 01-01-20',
         'г.минск, ул.карла-маркса, 3-45',
-        'пенсионное уд. 4 от 01-01-20',
+        'г.минск, ул.карла-маркса, 3-45',
         '1984-07-26',
         'admin@mail.com',
         '2020-07-01',
@@ -34,9 +34,37 @@ values ('г.минск, ул.карла-маркса, 3-45',
         'иванович',
         '+375293912358',
         '+375293912358',
-        'user',
-        'active');
+        'USER',
+        'ACTIVE'),
+       ('-',
+        'г.Гомель, ул.Советская, 30',
+        'г.Гомель, ул.Советская, 30',
+        '1988-02-23',
+        'user@mail.com',
+        '2020-07-01',
+        null,
+        null,
+        '2020-07-01',
+        'договор купли-продажи от 13.03.2021',
+        true,
+        'иванов',
+        'hb123453248 выдан центральным ровд г.Гомеля 31-01-2011',
+        '$2a$10$CFyb65uvxREdFZq21INAcOtnLgJomL6rYsndRQUptcz3UX5M2b/AO',
+        'иванович',
+        '+375293567567',
+        '+375293956756',
+        'USER',
+        'ACTIVE');
 
-insert into garage(description, is_private, square, owner_id)
-values ('17', true, 18.7, 1);
+insert into garage(id, description, is_private, square, owner_id)
+values (1, '17', true, 18.7, 1),
+       (2, '13', true, 18.7, 1),
+       (3, '8', true, 21, 2),
+       (4, '3', true, 21, 2);
+
+
+insert into news(date, header, text, status)
+values ('2022-12-11', 'Уборка снега', 'Силами ГПК провели уборку снега', 'ACTIVE'),
+ ('2022-11-10', 'Уборка мусора', 'Силами ГПК провели уборку мусора', 'ACTIVE'),
+ ('2022-09-13', 'Покраска забоа', 'Силами ГПК провели покраску забора', 'ACTIVE');
 
