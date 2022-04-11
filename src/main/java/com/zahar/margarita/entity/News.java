@@ -29,6 +29,5 @@ public class News {
     private String text;
 
     @Column(name = "status")
-    @Enumerated(value = EnumType.STRING)
-    private Status status;
+    private boolean status;
 }

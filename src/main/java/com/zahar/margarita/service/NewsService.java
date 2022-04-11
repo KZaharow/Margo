@@ -15,4 +15,6 @@ public interface NewsService {
     void deleteNews(Long id);
 
     List<News> getAllNews();
+
+    void setNewsStatus(Long id);
 }

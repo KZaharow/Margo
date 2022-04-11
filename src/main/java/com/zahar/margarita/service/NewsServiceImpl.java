@@ -16,12 +16,12 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class NewsServiceImpl implements NewsService {
 
-    private final NewsRepository NewsRepository;
+    private final NewsRepository newsRepository;
 
     @Override
     @Transactional
     public News getNewsById(Long id) {
-        return NewsRepository
+        return newsRepository
                 .findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(ExceptionMessage.NEWS_NOT_FOUND));
     }
@@ -29,24 +29,32 @@ public class NewsServiceImpl implements NewsService {
     @Override
     @Transactional
     public Long addNews(News News) {
-        return NewsRepository.save(News).getId();
+        return newsRepository.save(News).getId();
     }
 
     @Override
     @Transactional
     public void updateNews(News News) {
-        if (!Objects.isNull(News.getId())) NewsRepository.save(News);
+        if (!Objects.isNull(News.getId())) newsRepository.save(News);
     }
 
     @Override
     @Transactional
     public void deleteNews(Long id) {
         News news = getNewsById(id);
-        news.setStatus(Status.DELETE);
+        news.setStatus(false);
     }
 
     @Override
+    @Transactional
     public List<News> getAllNews() {
-        return NewsRepository.findAll();
+        return newsRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void setNewsStatus(Long id) {
+        News news = getNewsById(id);
+        news.setStatus(!news.isStatus());
     }
 }

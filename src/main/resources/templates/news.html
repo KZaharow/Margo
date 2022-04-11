@@ -5,20 +5,30 @@
     <title>Редактирование новостей</title>
 </head>
 <body>
-<select class="form-control" id="dropDownList">
-    <option value="2"></option>
-    <option th:each="n : ${news}" th:value="${n}" th:text="${n}"></option>
-</select>
-<p>Добавить новость в базу</p>
-<form action="/news" method="post">
-    <section>
-        <label for="header_id">Заголовок</label>
-        <input type="text" name="header" id="header_id">
-        <label for="text_id">Текст</label>
-        <input type="text" name="text" id="text_id">
-        <button type="submit">Добавить</button>
-    </section>
-</form>
+<p>Новости</p>
+<table class="table">
+    <thead>
+    <th>Дата</th>
+    <th>Заголовок</th>
+    <th>Текст</th>
+    <th>Статус</th>
+    <th>Редактировать</th>
+    </thead>
+    <tbody>
+    <tr th:each="n : ${news}">
+        <td th:text="${#dates.format(n.date, 'EEE, d MMM yyyy HH:mm')}"></td>
+        <td th:text="${n.header}"></td>
+        <td th:text="${n.text}"></td>
+        <td>
+            <form th:action="@{/news/status/} + ${n.id}">
+                <input type="checkbox" name="my-checkbox" onclick="submit();" th:checked="${n.status} ? 'checked'">
+            </form>
+        </td>
+        <td><a th:href="@{/news/update/} + ${n.id}">+</a></td>
 
+
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

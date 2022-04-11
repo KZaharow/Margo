@@ -6,10 +6,7 @@ import com.zahar.margarita.status.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,6 +21,19 @@ public class NewsController {
     @Autowired
     NewsService newsService;
 
+    @GetMapping("/status/{id}")
+    public String setNewsStatus(Model model, @PathVariable Long id) {
+        newsService.setNewsStatus(id);
+        List<News> news = newsService.getAllNews();
+        model.addAttribute("news", news);
+        return "news";
+    }
+
+    @GetMapping("/update/{id}")
+    public String putNews(Model model, @PathVariable Long id) {
+        return "news_update";
+    }
+
     @GetMapping("")
     public String getAllNews(Model model) {
         List<News> news = newsService.getAllNews();
@@ -37,7 +47,7 @@ public class NewsController {
         news.setDate(LocalDateTime.now());
         news.setHeader(header);
         news.setText(text);
-        news.setStatus(ACTIVE);
+        news.setStatus(false);
         Long newsId = newsService.addNews(news);
         if (Objects.nonNull(newsId)){
             model.addAttribute("alert", newsId);

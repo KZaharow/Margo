@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование новостей</title>
+</head>
+<body>
+<form action="/news/add" method="put">
+    <section>
+        <label for="header_id">Заголовок</label>
+        <input type="text" name="header" id="header_id">
+        <label for="text_id">Текст</label>
+        <input type="text" name="text" id="text_id">
+        <label for="status_id">Статус</label>
+        <input type="checkbox" name="status" id="status_id">
+        <button type="submit">ok</button>
+    </section>
+</form>
+</body>
+</html>
