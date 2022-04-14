@@ -9,8 +9,11 @@
 </head>
 <body>
 <div class="container mt-3">
+    <div th:insert="navigation :: navigation"></div>
     <table class="table table-striped">
-        <capttion>Новости</capttion>
+        <capttion>
+            <h3>Новости</h3>
+        </capttion>
         <thead>
         <th>Дата</th>
         <th>Заголовок</th>
@@ -24,14 +27,28 @@
             <td th:text="${n.header}"></td>
             <td th:text="${n.text}"></td>
             <td>
-                <form action="/hello">
-                    <input type="text" name="t" id="t_id">
+                <form th:action="@{/news/status/{id}(id=${n.id})}">
+                    <input type="checkbox" name="news-status-checkbox" onclick="submit();"
+                           th:checked="${n.status} ? 'checked'">
                 </form>
             </td>
-            <td><a th:href="@{/news/update/{id}(id=${n.id})}">изменить</a></td>
+            <td>
+                <div th:insert="modal_news :: modal_news"></div>
+            </td>
         </tr>
         </tbody>
     </table>
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
 </div>
+<div class="container" th:insert="footer :: footer"></div>
+<script>
+    alert('hello')
+</script>
 </body>
 </html>
