@@ -23,7 +23,7 @@
         </thead>
         <tbody>
         <tr th:each="n : ${news}">
-            <td th:text="${n.date}"></td>
+            <td th:text="${{n.date}}"></td>
             <td th:text="${n.header}"></td>
             <td th:text="${n.text}"></td>
             <td>
@@ -47,8 +47,5 @@
     </ul>
 </div>
 <div class="container" th:insert="footer :: footer"></div>
-<script>
-    alert('hello')
-</script>
 </body>
 </html>
