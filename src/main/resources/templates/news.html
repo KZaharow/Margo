@@ -33,7 +33,7 @@
                 </form>
             </td>
             <td>
-                <div th:insert="modal_news :: modal_news"></div>
+                <a th:href="@{/news/update/{id}(id=${n.id})}">изменить</a>
             </td>
         </tr>
         </tbody>
@@ -47,8 +47,5 @@
     </ul>
 </div>
 <div class="container" th:insert="footer :: footer"></div>
-<script>
-    alert('hello')
-</script>
 </body>
 </html>

@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Formatter;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,7 +32,10 @@ public class NewsController {
     }
 
     @GetMapping("/update/{id}")
-    public String putNews(Model model, @PathVariable Long id) {
+    public String putNews(Model model, @PathVariable Long id)
+    {
+        News news = newsService.getNewsById(id);
+        model.addAttribute("news", news);
         return "news_update";
     }
 
@@ -54,6 +59,22 @@ public class NewsController {
         } else {
             model.addAttribute("alert", 0L);
         }
+        return getAllNews(model);
+    }
+
+    @PostMapping("/update")
+    public String putNews(Model model,
+                          @RequestParam Long id,
+                          @RequestParam String header,
+                          @RequestParam String text,
+                          @RequestParam boolean chkbx) {
+        News news = new News();
+        news.setId(id);
+        news.setDate(LocalDateTime.now());
+        news.setHeader(header);
+        news.setText(text);
+        news.setStatus(chkbx);
+        newsService.updateNews(news);
         return getAllNews(model);
     }
 }
