@@ -25,7 +25,7 @@ public class News {
     @Column(name = "header")
     private String header;
 
-    @Column(name = "text")
+    @Column(name = "text", length = 2000)
     private String text;
 
     @Column(name = "status")

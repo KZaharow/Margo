@@ -17,15 +17,15 @@
         </div>
         <div class="mb-3 mt-3">
             <label for="date">Дата:</label>
-            <input type="date" class="form-control" id="date" name="date" th:value="${news.date}">
+            <input type="datetime-local" class="form-control" id="date" name="date" th:value="${news.date}">
         </div>
         <div class="mb-3">
             <label for="hdr">Заголовок:</label>
-            <input type="text" class="form-control" id="hdr" name="header" th:value="${news.header}">
+            <input maxlength="255" type="text" class="form-control" id="hdr" name="header" th:value="${news.header}">
         </div>
         <div class="mb-3">
             <label for="txt">Текст:</label>
-            <input type="text" class="form-control" id="txt" name="text" th:value="${news.text}">
+            <input maxlength="2000" type="text" class="form-control" id="txt" name="text" th:value="${news.text}">
         </div>
         <div class="form-check mb-3">
             <label class="form-check-label">

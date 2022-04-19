@@ -2,19 +2,15 @@ package com.zahar.margarita.controller;
 
 import com.zahar.margarita.entity.News;
 import com.zahar.margarita.service.NewsService;
-import com.zahar.margarita.status.Status;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Formatter;
 import java.util.List;
 import java.util.Objects;
-
-import static com.zahar.margarita.status.Status.ACTIVE;
 
 @Controller
 @RequestMapping("/news")
@@ -32,8 +28,7 @@ public class NewsController {
     }
 
     @GetMapping("/update/{id}")
-    public String putNews(Model model, @PathVariable Long id)
-    {
+    public String putNews(Model model, @PathVariable Long id) {
         News news = newsService.getNewsById(id);
         model.addAttribute("news", news);
         return "news_update";
@@ -54,7 +49,7 @@ public class NewsController {
         news.setText(text);
         news.setStatus(false);
         Long newsId = newsService.addNews(news);
-        if (Objects.nonNull(newsId)){
+        if (Objects.nonNull(newsId)) {
             model.addAttribute("alert", newsId);
         } else {
             model.addAttribute("alert", 0L);
@@ -67,13 +62,15 @@ public class NewsController {
                           @RequestParam Long id,
                           @RequestParam String header,
                           @RequestParam String text,
-                          @RequestParam boolean chkbx) {
+                          @RequestParam(defaultValue = "off") String chkbx,
+                          @RequestParam("date")
+                          @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date) {
         News news = new News();
         news.setId(id);
-        news.setDate(LocalDateTime.now());
+        news.setDate(date);
         news.setHeader(header);
         news.setText(text);
-        news.setStatus(chkbx);
+        news.setStatus(chkbx.equals("on"));
         newsService.updateNews(news);
         return getAllNews(model);
     }
