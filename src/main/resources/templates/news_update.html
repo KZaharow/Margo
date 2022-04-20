@@ -10,28 +10,29 @@
 <body>
 <div class="container mt-3">
     <h2>Редактировать новость</h2>
-    <form action="/news/update" method="post">
+    <form action="#" th:action="@{/news/update}" th:object="${news}" method="post">
         <div class="mb-3 mt-3">
             <label for="id">Id:</label>
-            <input type="text" class="form-control" readonly="true" id="id" name="id" th:value="${news.id}">
+            <input type="text" class="form-control" readonly="true" id="id" th:field="*{id}">
         </div>
         <div class="mb-3 mt-3">
             <label for="date">Дата:</label>
-            <input type="datetime-local" class="form-control" id="date" name="date" th:value="${news.date}">
+            <input type="datetime-local" class="form-control" id="date" th:field="*{date}">
         </div>
         <div class="mb-3">
             <label for="hdr">Заголовок:</label>
-            <input maxlength="255" type="text" class="form-control" id="hdr" name="header" th:value="${news.header}">
+            <input maxlength="255" type="text" class="form-control" id="hdr" th:field="*{header}">
         </div>
         <div class="mb-3">
             <label for="txt">Текст:</label>
-            <input maxlength="2000" type="text" class="form-control" id="txt" name="text" th:value="${news.text}">
+            <input maxlength="2000" type="text" class="form-control" id="txt" th:field="*{text}">
         </div>
-        <div class="form-check mb-3">
+        <!--<div class="form-check mb-3">
             <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" name="chkbx" th:checked="${news.isStatus()} ? 'checked'"> Активна ?
+                <input class="form-check-input" type="checkbox" name="isStatus" th:checked="*{isStatus()} ? 'checked' ">
+                Активна ?
             </label>
-        </div>
+        </div>-->
         <button type="submit" class="btn btn-primary">Ок</button>
     </form>
 </div>

@@ -58,19 +58,7 @@ public class NewsController {
     }
 
     @PostMapping("/update")
-    public String putNews(Model model,
-                          @RequestParam Long id,
-                          @RequestParam String header,
-                          @RequestParam String text,
-                          @RequestParam(defaultValue = "off") String chkbx,
-                          @RequestParam("date")
-                          @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date) {
-        News news = new News();
-        news.setId(id);
-        news.setDate(date);
-        news.setHeader(header);
-        news.setText(text);
-        news.setStatus(chkbx.equals("on"));
+    public String putNews(Model model, @ModelAttribute @DateTimeFormat() News news) {
         newsService.updateNews(news);
         return getAllNews(model);
     }
