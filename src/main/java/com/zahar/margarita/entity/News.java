@@ -4,6 +4,7 @@ import com.zahar.margarita.status.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -20,6 +21,7 @@ public class News {
     private Long id;
 
     @Column(name = "date")
+    @DateTimeFormat(pattern="dd-MMM-YYYY")
     private LocalDateTime date;
 
     @Column(name = "header")

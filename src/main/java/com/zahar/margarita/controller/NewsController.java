@@ -58,7 +58,7 @@ public class NewsController {
     }
 
     @PostMapping("/update")
-    public String putNews(Model model, @ModelAttribute @DateTimeFormat() News news) {
+    public String putNews(Model model, @ModelAttribute News news) {
         newsService.updateNews(news);
         return getAllNews(model);
     }
