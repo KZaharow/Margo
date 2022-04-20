@@ -58,8 +58,13 @@ public class NewsController {
     }
 
     @PostMapping("/update")
-    public String putNews(Model model, @ModelAttribute News news) {
+    public String putNews(@RequestParam Long id,
+                          @RequestParam String header,
+                          @RequestParam String text,
+                          @RequestParam(defaultValue = "") String isStatus,
+                          @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date) {
+        News news = new News(id, date, header, text, !isStatus.equals(""));
         newsService.updateNews(news);
-        return getAllNews(model);
+        return "redirect:/news";
     }
 }

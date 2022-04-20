@@ -1,16 +1,17 @@
 package com.zahar.margarita.entity;
 
-import com.zahar.margarita.status.Status;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class News {
@@ -20,7 +21,7 @@ public class News {
     private Long id;
 
     @Column(name = "date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm:ss")
     private LocalDateTime date;
 
     @Column(name = "header")
