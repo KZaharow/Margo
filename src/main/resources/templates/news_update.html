@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="container mt-3">
-    <h2>Редактировать новость</h2>
+   <h2>Редактировать новость</h2>
     <form action="#" th:action="@{/news/update}" th:object="${news}" method="post">
         <div class="mb-3 mt-3">
             <label for="id">Id:</label>
@@ -34,6 +34,7 @@
             </label>
         </div>
         <button type="submit" class="btn btn-primary">Ок</button>
+        <a href="/news" class="btn btn-secondary">Отмена</a>
     </form>
 </div>
 

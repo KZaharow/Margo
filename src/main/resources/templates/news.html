@@ -23,7 +23,7 @@
         </thead>
         <tbody>
         <tr th:each="n : ${news}">
-            <td th:text="${{n.date}}"></td>
+            <td th:text="${#temporals.format(n.date, 'dd-MM-yyyy HH:mm')}"></td>
             <td th:text="${n.header}"></td>
             <td th:text="${n.text}"></td>
             <td>
@@ -39,13 +39,26 @@
         </tbody>
     </table>
     <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <li class="page-item"><a class="page-link" th:href="@{/news/{id}(id=${news.getPageable().getPageNumber()-1})}">назад</a>
+        </li>
+        <li class="page-item"><a class="page-link" th:href="@{/news/{id}(id=${news.getPageable().getPageNumber()-1})}"
+                                 th:text="${news.getPageable().getPageNumber()-1}"></a>
+        </li>
+        <li class="page-item"><a class="page-link" th:href="@{/news/{id}(id=${news.getPageable().getPageNumber()})}"
+                                 th:text="${news.getPageable().getPageNumber()}"></a></li>
+        <li class="page-item"><a class="page-link" th:href="@{/news/{id}(id=${news.getPageable().getPageNumber()+1})}"
+                                 th:text="${news.getPageable().getPageNumber()+1}"></a>
+        </li>
+        <li class="page-item"><a class="page-link" th:href="@{/news/{id}(id=${news.getPageable().getPageNumber()+1})}">вперед</a>
+        </li>
     </ul>
 </div>
 <div class="container" th:insert="footer :: footer"></div>
+<script>
+    function updatePagebleNumber(
+    ) {
+
+    }
+</script>
 </body>
 </html>

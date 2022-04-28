@@ -3,13 +3,15 @@ package com.zahar.margarita.service;
 import com.zahar.margarita.entity.News;
 import com.zahar.margarita.exception.ExceptionMessage;
 import com.zahar.margarita.repository.NewsRepository;
-import com.zahar.margarita.status.Status;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -17,6 +19,8 @@ import java.util.Objects;
 public class NewsServiceImpl implements NewsService {
 
     private final NewsRepository newsRepository;
+    @Value("${maxPageRecords}")
+    private int maxPageRecords;
 
     @Override
     @Transactional
@@ -47,8 +51,9 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     @Transactional
-    public List<News> getAllNews() {
-        return newsRepository.findAll();
+    public Page<News> getAllNews(int pageNumber) {
+        PageRequest pageRequest = PageRequest.of(pageNumber, maxPageRecords, Sort.by("date").descending());
+        return newsRepository.findAll(pageRequest);
     }
 
     @Override

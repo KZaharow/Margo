@@ -21,7 +21,7 @@ public class News {
     private Long id;
 
     @Column(name = "date")
-    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime date;
 
     @Column(name = "header")
