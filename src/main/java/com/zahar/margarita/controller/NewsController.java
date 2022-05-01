@@ -30,6 +30,13 @@ public class NewsController {
         return "news";
     }
 
+    @GetMapping("/create")
+    public String addNews(Model model) {
+        News news = new News(null, LocalDateTime.now(), "", "", true);
+        model.addAttribute("news", news);
+        return "news_create";
+    }
+
     @GetMapping("/update/{id}")
     public String putNews(Model model, @PathVariable @Min(1) Long id) {
         News news = newsService.getNewsById(id);
@@ -45,19 +52,12 @@ public class NewsController {
     }
 
     @PostMapping("")
-    public String addNews(Model model, @RequestParam String header, @RequestParam String text) {
-        News news = new News();
-        news.setDate(LocalDateTime.now());
-        news.setHeader(header);
-        news.setText(text);
-        news.setStatus(false);
-        Long newsId = newsService.addNews(news);
-        if (Objects.nonNull(newsId)) {
-            model.addAttribute("alert", newsId);
-        } else {
-            model.addAttribute("alert", 0L);
-        }
-        return getAllNews(model, 1);
+    public String createNews(@RequestParam String header,
+                             @RequestParam String text,
+                             @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date) {
+        News news = new News(null, date, header, text, true);
+        newsService.addNews(news);
+        return "redirect:/news";
     }
 
     @PostMapping("/update")
