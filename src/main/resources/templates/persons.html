@@ -32,10 +32,19 @@
         <th>Статус</th>
         </thead>
         <tbody>
+
         <tr th:each="p : ${persons}">
-            <!--<td th:text="${p.}"></td>
-            <td th:text="${#temporals.format(n.date, 'dd-MM-yyyy HH:mm')}"></td>
-            <td th:text="${n.text}"></td>
+
+            <td>
+                <div th:each="g : ${p.garages}">
+                    <p th:text="${g.id}"></p>
+                </div>
+            </td>
+            <td th:text="${p.lastName + ' ' + p.firstName}"></td>
+            <td th:text="${p.phone1}"></td>
+            <td th:text="${p.phone2}"></td>
+            <td th:text="${#temporals.format(p.birthday, 'dd-MM-yyyy')}"></td>
+            <!--<td th:text="${n.text}"></td>
             <td>
                 <form th:action="@{/news/status/{id}(id=${n.id})}">
                     <input type="checkbox" name="news-status-checkbox" onclick="submit();"
@@ -44,35 +53,11 @@
             </td>
             <td>
                 <a th:href="@{/news/update/{id}(id=${n.id})}">изменить</a>
-            </td>-->
+            </td>-&ndash;&gt;-->
         </tr>
         </tbody>
     </table>
-    <ul class="pagination">
-        <li class="page-item"><a class="page-link" th:href="@{/news/{id}(id=${news.getPageable().getPageNumber()-1})}">назад</a>
-        </li>
-        <li class="page-item"><a class="page-link" th:href="@{/news/{id}(id=${news.getPageable().getPageNumber()-1})}"
-                                 th:text="${news.getPageable().getPageNumber()-1}"></a>
-        </li>
-        <li class="page-item active"><a class="page-link"
-                                        th:href="@{/news/{id}(id=${news.getPageable().getPageNumber()})}"
-                                        th:text="${news.getPageable().getPageNumber()}"></a></li>
-        <li class="page-item"><a class="page-link" th:href="@{/news/{id}(id=${news.getPageable().getPageNumber()+1})}"
-                                 th:text="${news.getPageable().getPageNumber()+1}"></a>
-        </li>
-        <li class="page-item"><a class="page-link" th:href="@{/news/{id}(id=${news.getPageable().getPageNumber()+1})}">вперед</a>
-        </li>
-    </ul>
 </div>
 <div class="container" th:insert="footer :: footer"></div>
-<script>
-    function getFiltredPage() {
-        let date = document.getElementById('date').value;
-        $.get("1").done();
-    }
-
-
-
-</script>
 </body>
 </html>

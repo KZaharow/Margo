@@ -19,7 +19,7 @@ public class PersonController {
     @Autowired
     PersonService personService;
 
-    @GetMapping("/")
+    @GetMapping
     public String getAllPersons(Model model) {
         List<Person> persons = personService.getAllPersons();
         model.addAttribute("persons", persons);
