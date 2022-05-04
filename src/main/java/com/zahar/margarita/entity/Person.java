@@ -2,15 +2,14 @@ package com.zahar.margarita.entity;
 
 import com.zahar.margarita.roles.Roles;
 import com.zahar.margarita.status.Status;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
