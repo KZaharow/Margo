@@ -14,6 +14,7 @@
     <table id="g-tab" class="table table-striped">
         <capttion>
             <h3>Гаражи</h3>
+            <a href="/garage/add">< добавить ></a>
         </capttion>
         <thead>
         <th>Номер</th>
@@ -26,32 +27,19 @@
         </thead>
         <tbody>
         <tr th:each="g : ${garages}">
-            <td th:text="${g.id}"></td>
+            <td th:text="${g.number}"></td>
             <td th:text="${g.owner.lastName + ' ' + g.owner.firstName + ' ' + g.owner.patronymic}"></td>
             <td th:text="${g.owner.phone1 + ', ' + g.owner.phone2}"></td>
             <td th:text="${g.square}"></td>
             <td th:text="${g.square} ? 'да' : 'нет'"></td>
             <td th:text="${g.description}"></td>
             <td>
-                <a th:href="@{/garage/{id}(id=${g.id})}">изменить</a>
+                <a th:href="@{/garage/update/{id}(id=${g.id})}">изменить</a>
             </td>
-
         </tr>
         </tbody>
     </table>
 </div>
 <div class="container" th:insert="footer :: footer"></div>
-<script>
-    $(document).ready(function () {
-        $('#g-tab').DataTable({
-            responsive: true
-        });
-        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            $($.fn.dataTable.tables(true)).DataTable()
-                .columns.adjust()
-                .responsive.recalc();
-        });
-    });
-</script>
 </body>
 </html>

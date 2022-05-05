@@ -56,7 +56,7 @@ values ('пенсионное уд. 4 от 01-01-20',
         'USER',
         'ACTIVE');
 
-insert into garage(id, description, is_private, square, owner_id)
+insert into garage(number, description, is_private, square, owner_id)
 values (1, '17', true, 18.7, 1),
        (2, '13', true, 18.7, 1),
        (3, '8', true, 21, 2),

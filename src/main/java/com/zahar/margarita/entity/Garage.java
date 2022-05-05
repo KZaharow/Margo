@@ -17,10 +17,12 @@ import javax.validation.constraints.NotNull;
 public class Garage {
 
     @Id
-    @NotNull
-    @Min(1)
-    @Max(74)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "number")
+    @Min(1)
+    private Long number;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
