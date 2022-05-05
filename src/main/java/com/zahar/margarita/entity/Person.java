@@ -3,6 +3,7 @@ package com.zahar.margarita.entity;
 import com.zahar.margarita.roles.Roles;
 import com.zahar.margarita.status.Status;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -41,6 +42,7 @@ public class Person {
     private String phone2;
 
     @Column(name = "birthday")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
 
     @Column(name = "passport")

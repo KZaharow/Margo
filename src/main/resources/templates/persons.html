@@ -1,23 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <title>Редактирование владельцев</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>success login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<tbody>
-<tr th:if="${persons.empty}">
-    <td colspan="2">Список людей пуст</td>
-</tr>
-<tr th:each=" person : ${persons}">
-    <td><span th:text="${person.firstName}"> Title </span></td>
-    <td><span th:text="${person.address1}"> Author </span></td>
-</tr>
-</tbody>
+<div class="container mt-3">
+    <div th:insert="navigation :: navigation"></div>
+    <table class="table table-striped">
+        <capttion>
+            <h3>Владельцы</h3>
+        </capttion>
+        <thead>
+        <th>Гараж</th>
+        <th>ФИО</th>
+        <th>Тел.1</th>
+        <th>Тел.2</th>
+        <th>ДР</th>
+        <th>Паспорт</th>
+        <th>Адрес 1</th>
+        <th>Адрес 2</th>
+        <th>Дата вступления</th>
+        <th>Дата исключения</th>
+        <th>Документ</th>
+        <th>Льгота</th>
+        <th>Документ</th>
+        <th>Статус</th>
+        </thead>
+        <tbody>
+
+        <tr th:each="p : ${persons}">
+
+            <td>
+                <div th:each="g : ${p.garages}">
+                    <p th:text="${g.id}"></p>
+                </div>
+            </td>
+            <td th:text="${p.lastName + ' ' + p.firstName}"></td>
+            <td th:text="${p.phone1}"></td>
+            <td th:text="${p.phone2}"></td>
+            <td th:text="${#temporals.format(p.birthday, 'dd-MM-yyyy')}"></td>
+            <!--<td th:text="${n.text}"></td>
+            <td>
+                <form th:action="@{/news/status/{id}(id=${n.id})}">
+                    <input type="checkbox" name="news-status-checkbox" onclick="submit();"
+                           th:checked="${n.status} ? 'checked'">
+                </form>
+            </td>
+            <td>
+                <a th:href="@{/news/update/{id}(id=${n.id})}">изменить</a>
+            </td>-&ndash;&gt;-->
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container" th:insert="footer :: footer"></div>
 </body>
 </html>
