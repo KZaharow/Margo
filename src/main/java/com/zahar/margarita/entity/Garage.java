@@ -24,7 +24,7 @@ public class Garage {
     @Min(1)
     private Long number;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "owner_id")
     private Person owner;
 

@@ -14,21 +14,20 @@
 <body>
 <div class="container mt-3">
     <div th:insert="navigation :: navigation"></div>
+    <h3 align="right">Список гаражей</h3>
+    <div align="right">
+        <a href="/garage/add/">добавить гараж</a>
+    </div>
     <table id="g-tab" class="table table-striped">
-        <capttion>
-            <h3>Гаражи</h3>
-            <a href="/garage/add">< добавить ></a>
-        </capttion>
-        <thead>
-        <th>Номер</th>
-        <th>ФИО</th>
-        <th>Телефон</th>
-        <th>Площадь</th>
-        <th>Приватизирован</th>
-        <th>Описание</th>
-        <th>Редактировать</th>
-        </thead>
-        <tbody>
+        <tr>
+            <th>Номер</th>
+            <th>ФИО</th>
+            <th>Телефон</th>
+            <th>Площадь</th>
+            <th>Приватизирован</th>
+            <th>Описание</th>
+            <th>Редактировать</th>
+        </tr>
         <tr th:each="g : ${garages}">
             <td th:text="${g.number}"></td>
             <td th:text="${g.owner.lastName + ' ' + g.owner.firstName + ' ' + g.owner.patronymic}"></td>
@@ -40,7 +39,6 @@
                 <a th:href="@{/garage/update/{id}(id=${g.id})}">изменить</a>
             </td>
         </tr>
-        </tbody>
     </table>
 </div>
 <div class="container" th:insert="footer :: footer"></div>

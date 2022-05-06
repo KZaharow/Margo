@@ -2,6 +2,7 @@ package com.zahar.margarita.service;
 
 import com.zahar.margarita.entity.Garage;
 import com.zahar.margarita.exception.ExceptionMessage;
+import com.zahar.margarita.exception.GarageException;
 import com.zahar.margarita.repository.GarageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,8 @@ public class GarageServiceImpl implements GarageService {
 
     @Override
     @Transactional
-    public Long addGarage(Garage garage) {
+    public Long addGarage(Garage garage) throws GarageException {
+        isExistGarageWithNumber(garage.getNumber());
         return garageRepository.save(garage).getId();
     }
 
@@ -41,5 +43,12 @@ public class GarageServiceImpl implements GarageService {
     @Transactional
     public List<Garage> getAllGarages() {
         return garageRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void isExistGarageWithNumber(Long number) throws GarageException {
+        Long count = garageRepository.getGarageCountWithNumber(number);
+        if (count != 0) throw new GarageException(ExceptionMessage.GARAGE_WITH_SAME_NUMBER_IS_EXIST_ALREADY);
     }
 }

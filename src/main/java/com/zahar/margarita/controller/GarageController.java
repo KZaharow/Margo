@@ -2,6 +2,7 @@ package com.zahar.margarita.controller;
 
 import com.zahar.margarita.entity.Garage;
 import com.zahar.margarita.entity.Person;
+import com.zahar.margarita.exception.GarageException;
 import com.zahar.margarita.service.GarageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,25 @@ public class GarageController {
         List<Garage> garages = garageService.getAllGarages();
         model.addAttribute("garages", garages);
         return "garage";
+    }
+
+    @GetMapping("/add")
+    public String addGarage(Model model) {
+        return "garage_add";
+    }
+
+    @PostMapping("/add")
+    public String addNews(@RequestParam Long number,
+                          @RequestParam String description,
+                          @RequestParam(defaultValue = "0") Double square,
+                          @RequestParam(defaultValue = "") String isPrivate) throws GarageException {
+        Person person = new Person();
+        person.setFirstName("И");
+        person.setLastName("Ф");
+        person.setPatronymic("О");
+        Garage garage = new Garage(null, number, person, !isPrivate.equals(""), square, description);
+        garageService.addGarage(garage);
+        return "redirect:/garage/";
     }
 
     @GetMapping("/update/{id}")
