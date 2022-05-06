@@ -13,7 +13,7 @@
     <form action="#" th:action="@{/news/update}" th:object="${news}" method="post">
         <div class="mb-3 mt-3">
             <label for="id">Id:</label>
-            <input type="text" class="form-control" readonly="true" id="id" th:field="*{id}">
+            <input type="text" class="form-control" readonly="readonly" id="id" th:field="*{id}">
         </div>
         <div class="mb-3 mt-3">
             <label for="date">Дата:</label>
